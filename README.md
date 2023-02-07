@@ -82,7 +82,7 @@
 
   ###  Nesting And Parent Element 
 
-    in css we nest elements like :
+- in css we nest elements like :
       <pre>
         .parent {
           //any thing 1
@@ -95,7 +95,7 @@
         }
       </pre>
 
-    in sass we nest elements like :
+- in sass we nest elements like :
       <pre>
         .parent {
           //any thing 1
@@ -107,3 +107,79 @@
           }
         }
       </pre>
+
+- More examples 
+  <pre>
+  .parent-one,
+  .parent-two {
+    padding: 20px;
+    .child {
+      padding: 10px;
+    }
+  }
+
+  .parent > {
+    .child {
+      font-size: 20px;
+    }
+    .test {
+      font-weight: bold;
+    }
+  }
+
+  .parent {
+    > .child {
+      font-size: 20px;
+    }
+    .test {
+      font-weight: bold;
+    }
+    + p {
+      font-size: 15px;
+    }
+  }
+
+  .parent { > {
+      .element-one {
+        font-size: 10px;
+      }
+      .element-two {
+        font-size: 10px;
+      }
+    }
+    .not-direct-child {
+      font-weight: bold;
+    }
+  }
+
+  .box {
+    .title {
+      font-size: 10px;
+    }
+    .description {
+      font-size: 8px;
+    }
+    &:hover {
+      background-color: #eee;
+    }
+    &:hover .title {
+      font-weight: bold;
+    }
+
+    &:hover {
+      .title {
+      font-weight: bold;
+      }
+    }
+
+    :not(&) {
+      font-weight: normal;
+    }
+    
+    [dir="rtl"] & {
+      direction: rtl;
+    }
+  }
+
+  NOTE : & is related to the parent ( .box )
+  </pre>
