@@ -83,15 +83,27 @@
   ###  Nesting And Parent Element 
 
     in css we nest elements like :
-
-    .parent {
-      //any thing
-    }
-
-    .parent .title {
-      //any thing
-    }
-
+      <pre>
+        .parent {
+          //any thing 1
+        }
+        .parent .title {
+          //any thing 2
+        }
         .parent  .title p {
-      //any thing
-    }
+          //any thing 3
+        }
+      </pre>
+
+    in sass we nest elements like :
+      <pre>
+        .parent {
+          //any thing 1
+          .title {
+            //any thing 2
+            p {
+              //any thing 3
+            }
+          }
+        }
+      </pre>
