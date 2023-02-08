@@ -183,3 +183,109 @@
 
   NOTE : & is related to the parent ( .box )
   </pre>
+
+
+  ### Property Declarations And Placeholder
+
+  - we can use this for properties if it has many values
+  <pre>
+    CSS:
+      div {
+        font-size : 20px;
+        font-weight :bold;
+        font-family : sans-arial
+      }
+      
+    SASS:
+      div {
+        font {
+          size: 20px;
+          weight:bold;
+          family: sans-arial;
+        }
+      }
+  </pre>
+
+- there is somthing used called place holder to store data that we need 
+- place holder must start wih %
+- we use @extend to get placeholder data any where we need
+
+  <pre>
+    %box-details {
+      color : black;
+      background-color: red;
+      border-radius : 20px
+    }
+
+    .new-box {
+      @extend %box-details;
+      width :20px;
+      height:20px
+    }
+    
+    .title {
+      @extend %box-details;
+      font-weight : bold;
+    }
+  </pre>
+
+### Control Flow => If And Else
+
+  <pre>
+    $theme: "dark";
+    .page {
+      @if $theme == "light" {
+        background-color: white;
+        color: #444;
+      } @else if $theme == "dark"  {
+        background-color: #444;
+        color: white;
+      } @else {
+        @error('error here must dark or light')
+      }
+    }
+
+    $rounded: false;
+    .box {
+      border-radius: if($rounded, 6px, 0px);
+    }
+
+    Note : if(condition, valueifTrue, valueifFalse)
+  </pre>
+
+### Interpolation
+- To do interpolation we use it like this : #{any}
+  <pre>
+    $company: "falcon";
+    $position: "right"; 
+    
+    .ad-#{$company} {
+      font-size: 20px;
+      background-image: url("imgs/#{$company}.png");
+      #{$position}: 0;
+    }
+    
+    IN CSS it looks like :
+
+      .ad-falcon {
+        font-size: 20px;
+        background-image: url("imgs/falcon.png");
+        right: 0;
+      }
+  </pre>
+
+  ### comments 
+
+  <pre>
+    // This Comment Will Not Show In CSS File
+    /* This Comment Will Show In CSS File But Not In Compressed Mode */
+    /*! This Comment Will Show In CSS File And In Compressed Mode */
+    /* This Comment Contains Interpolation => #{$company} افترض انه المتفير موجود */
+     
+    .box /* Multiple
+    Lines
+    Comment */ {
+      font-size: 20px; // Inline Comment
+    }
+     
+  </pre>
