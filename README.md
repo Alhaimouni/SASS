@@ -289,3 +289,44 @@
     }
      
   </pre>
+
+  ### Mixin and Include 
+
+- mixin works as function and parameter in js
+
+  <pre>
+    create a mixin to reset ul style
+     
+    @mixin list-reset {
+      padding : 0;
+      margin : 0;
+      list-style : none;
+    }
+     
+    after created i can use it using @include
+     
+    ul {
+      @include list-reset
+    }
+  
+    Note : in this case it works as placeholder
+  </pre>
+
+    <pre>
+    create a mixin to create a circle with diffrent size
+     
+    @mixin circle($dimentions) {
+      border-radius : 50%;
+      width : $dimentions;
+      height : $dimentions;
+    }
+     
+    after created i can use it using @include
+     
+    .circle-200 {
+      @include circle(200px);
+      background-color: red;
+    }
+  
+    Note : in this case it works as placeholder
+  </pre>
