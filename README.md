@@ -330,3 +330,118 @@
   
     Note : in this case it works as placeholder
   </pre>
+
+  
+  ### Looping in sass using For
+
+  <pre>
+  to vs through :
+   
+  - 1 to 10 (in this case 10 excluded)
+  - 1 through 10 (in this case 10 included)
+  
+  @for $i from 1 through 10 {
+    .class-#{$i} {
+      font-size: #{$i + 10px};
+    }
+  }
+   
+  $dimensions: 0;
+   
+  @for $i from 1 through 10 {
+    .circle-#{100 + $dimensions} {
+      width: $dimensions + 100px;
+      height: $dimensions + 100px;
+      border-radius: 50%;
+    }
+    $dimensions: $dimensions + 100;
+  }
+  </pre>
+
+
+    ### Looping in sass using Each And Maps
+
+    <pre>
+    $themes: red, green, blue, orange;
+     
+    @each $theme in $themes {
+      .#{$theme}-theme {
+        .product {
+          background-color: white;
+          border-bottom: 2px solid $theme;
+          .title {
+            color: $theme;
+            font-weight: bold;
+          }
+        }
+      }
+    }
+     
+    $socials: (
+      "facebook": blue,
+      "youtube": red,
+      "github": black,
+      "twitter": indianred,
+    );
+     
+    @each $name, $color in $socials {
+      .#{$name} {
+        background-color: $color;
+        color: white;
+        &::before {
+          content: $name;
+        }
+      }
+    }
+     
+    $classes: "one" 20px red, "two" 15px green, "three" 22px blue;
+     
+    @each $class, $font, $color in $classes {
+      .#{$class} {
+        font-size: $font;
+        background-color: $color;
+        color: white;
+        padding: $font / 2;
+      }
+    }
+    </pre>
+
+    ### Loops using While
+
+    <pre>
+      $start: 1;
+       
+      @while $start <= 10 {
+        .width-#{$start * 100} {
+          width: $start * 100px;
+          height: ($start * 100px) / 2;
+        }
+        $start: $start + 1;
+      }
+    </pre>
+
+
+    ### Functions 
+
+    <pre>
+      $width: 200px;
+   
+   
+      @function half($size) {
+        @return $size / 2;
+      }
+   
+      @function calculate($sizes...) {
+        $total: 0;
+        @each $size in $sizes {
+          $total: $total + $size;
+        }
+        @return $total;
+      }
+       
+      .element {
+        width: $width;
+        height: half($width);
+        top: calculate(100px, 200px, 50px);
+      }
+    </pre>
